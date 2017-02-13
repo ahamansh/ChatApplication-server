@@ -1,0 +1,61 @@
+[{
+	"name": {
+		"first": "virat",
+		"last": "kohli"
+	},
+	"email": "virat.kohli@example.com",
+	"login": {
+		"username": "virat",
+		"password": "kohli"
+	},
+	"picture": {
+		"large": "https://randomuser.me/api/portraits/men/20.jpg",
+		"medium": "https://randomuser.me/api/portraits/med/men/20.jpg",
+		"thumbnail": "https://randomuser.me/api/portraits/thumb/men/20.jpg"
+	}
+}, {
+	"name": {
+		"first": "ms",
+		"last": "dhoni"
+	},
+	"email": "ms.dhoni@example.com",
+	"login": {
+		"username": "ms",
+		"password": "dhoni"
+	},
+	"picture": {
+		"large": "https://randomuser.me/api/portraits/women/94.jpg",
+		"medium": "https://randomuser.me/api/portraits/med/women/94.jpg",
+		"thumbnail": "https://randomuser.me/api/portraits/thumb/women/94.jpg"
+	}
+}, {
+	"name": {
+		"first": "zaheer",
+		"last": "khan"
+	},
+	"email": "zaheer.khan@example.com",
+	"login": {
+		"username": "zaheer",
+		"password": "khan"
+	},
+	"picture": {
+		"large": "https://randomuser.me/api/portraits/men/5.jpg",
+		"medium": "https://randomuser.me/api/portraits/med/men/5.jpg",
+		"thumbnail": "https://randomuser.me/api/portraits/thumb/men/5.jpg"
+	}
+}, {
+	"name": {
+		"first": "suresh",
+		"last": "raina"
+	},
+	"email": "suresh.raina@example.com",
+	"login": {
+		"username": "suresh",
+		"password": "raina"
+	},
+	"picture": {
+		"large": "https://randomuser.me/api/portraits/women/44.jpg",
+		"medium": "https://randomuser.me/api/portraits/med/women/44.jpg",
+		"thumbnail": "https://randomuser.me/api/portraits/thumb/women/44.jpg"
+	}
+}]
