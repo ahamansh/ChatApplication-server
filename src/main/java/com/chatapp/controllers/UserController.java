@@ -53,6 +53,16 @@ public class UserController {
     	return new AuthResponse("Logged");
     }
     
+    @MessageMapping("/api/hello")
+    @SendTo("/topic/greetings")
+    public OutputMessage greeting() throws Exception {
+        Thread.sleep(1000); // simulated delay
+        final String time = new SimpleDateFormat("HH:mm").format(new Date());
+        System.out.println("I dont know");
+        return new OutputMessage("ansh", "Hi", time);
+       // return output;
+    }   
+    
 //    @MessageMapping("/chat")
 //    @SendTo("/topic/messages")
 //    public OutputMessage send(final Message message) throws Exception {

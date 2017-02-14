@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsUtils;
@@ -48,9 +49,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		.permitAll()
 		.antMatchers("/register")
 		.permitAll()
-//		.antMatchers("/logout")
+//		.antMatchers("/app/*")
 //		.permitAll()
-		.antMatchers("/**/*")
+//		.antMatchers("/topic/*")
+//		.permitAll()
+		.antMatchers("/api/*")
 		.hasAuthority("ROLE_USER")
 		.and()
 		.addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
@@ -64,6 +67,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         registration.setEnabled(false);
         return registration;
     }
+	
+	  @Override
+	  public void configure(WebSecurity web) throws Exception {
+	    web
+	      .ignoring()
+	         .antMatchers("/app/**"); // #3
+	  }
 
 
 }

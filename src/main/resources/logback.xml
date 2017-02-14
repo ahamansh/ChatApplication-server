@@ -1,9 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
-    <include resource="org/springframework/boot/logging/logback/base.xml"/>
-    <logger name="jdbc" level="OFF"/>
-    <logger name="jdbc.sqltiming" level="DEBUG"/>
-    <logger name="jdbc.resultsettable" level="DEBUG"/>
-    <logger name="com." level="DEBUG"/>
-    <logger name="org." level="DEBUG"/>
+    <appender name="STDOUT"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>D:\debug.log</file>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<Pattern>
+				%d{yyyy-MM-dd HH:mm:ss} - %msg%n
+			</Pattern>
+		</encoder>
+
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- rollover daily -->
+			<fileNamePattern>D:\archived/debug.%d{yyyy-MM-dd}.%i.log
+                        </fileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy
+				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>10MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+
+	</appender>
+
+	<logger name="org.springframework" level="DEBUG" />
+	<logger name="org.springframework.transaction" level="WARN" />
+
+	<!-- in order to debug some marshalling issues, this needs to be TRACE -->
+	<logger name="org.springframework.web.servlet.mvc" level="WARN" />
+
+	<root level="INFO">
+		<appender-ref ref="STDOUT" />
+	</root>
 </configuration>

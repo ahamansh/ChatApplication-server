@@ -31,32 +31,44 @@ public class JwtAuthFilter implements Filter{
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		HttpServletResponse httpResponse = (HttpServletResponse) response;
 
-		String origin = httpRequest.getHeader("Origin");
-		//if(origin.contains("localhost:3000"))
+		System.out.println(httpRequest.getHeader("Upgrade"));
+		System.out.println(httpRequest.getHeader("Sec-WebSocket-Extensions"));
+		System.out.println(httpRequest.getHeader("Sec-WebSocket-Key"));
+		System.out.println(httpRequest.getHeader("Sec-WebSocket-Version"));
+		System.out.println(httpRequest.getHeaderNames());
+
+		String websocketHeader = httpRequest.getHeader("Upgrade");
+
+		
+
+
+
+			String origin = httpRequest.getHeader("Origin");
+			//if(origin.contains("localhost:3000"))
 			httpResponse.addHeader("Access-Control-Allow-Origin", origin);
-		httpResponse.addHeader("Access-Control-Allow-Credentials", "true");
-		httpResponse.addHeader("Access-Control-Allow-Method", "GET,PUT,POST,DELETE");
-		Enumeration<String> heafers = httpRequest.getHeaderNames();
-		httpResponse.addHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+			httpResponse.addHeader("Access-Control-Allow-Credentials", "true");
+			httpResponse.addHeader("Access-Control-Allow-Method", "GET,PUT,POST,DELETE");
+			Enumeration<String> heafers = httpRequest.getHeaderNames();
+			httpResponse.addHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 
-		if(!CorsUtils.isPreFlightRequest(httpRequest)){
+			if(!CorsUtils.isPreFlightRequest(httpRequest)){
 
-			Cookie[] cookies = httpRequest.getCookies();
+				Cookie[] cookies = httpRequest.getCookies();
 
-			if(cookies != null && cookies.length > 0){
+				if(cookies != null && cookies.length > 0){
 
-				for(Cookie cookie : cookies){  		
-					if(cookie.getName().startsWith("SM_IDENTITY")){
-						JwtAuthToken token = new JwtAuthToken(cookie.getValue());
-						SecurityContextHolder.getContext().setAuthentication(token);
-					}        		
-				}       	
+					for(Cookie cookie : cookies){  		
+						if(cookie.getName().startsWith("SM_IDENTITY")){
+							JwtAuthToken token = new JwtAuthToken(cookie.getValue());
+							SecurityContextHolder.getContext().setAuthentication(token);
+						}        		
+					}       	
 
+				}
+				chain.doFilter(httpRequest, httpResponse);
+				//chain.doFilter(request, response);
 			}
-			chain.doFilter(httpRequest, httpResponse);
-			//chain.doFilter(request, response);
-		}
-
+		
 
 	}
 
